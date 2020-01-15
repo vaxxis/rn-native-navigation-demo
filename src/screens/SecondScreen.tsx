@@ -1,29 +1,38 @@
-import React, { Component } from 'react'
-import { Text, Button } from 'react-native'
+import React from 'react'
+import { Text, Button, StyleSheet } from 'react-native'
 import { Screen } from '../components'
-import Navigator, { NavigatorOptions, ScreenProps } from '../Navigator'
+import { NavigatorScreen, NavigatorOptions } from '../navigation'
 
 interface Props {
   componentId: string
+  title: string
+  subtitle: string
+  message: string
 }
 
-export default class SecondScreen extends Component<Props> {
-  static options(props: ScreenProps): NavigatorOptions {
+export default class SecondScreen extends NavigatorScreen<Props> {
+  static options(props: Props): NavigatorOptions {
     return {
       topBar: {
-        title: { text: props.title },
+        title: { text: props.title, color: '#000' },
+        subtitle: { text: props.subtitle, fontSize: 13, color: '#555' },
       },
     }
   }
 
-  navigate = () => Navigator.openModal('ThirdScreen')
-
   render() {
     return (
       <Screen>
-        <Text style={{ fontSize: 24 }}>Second Screen</Text>
-        <Button title="Open Modal Stack" onPress={this.navigate} />
+        <Text style={s.title}>Second Screen</Text>
+        <Text style={s.code}>{JSON.stringify(this.props, null, 2)}</Text>
+        <Button title="Open Modal Stack" onPress={() => this.navigation.openModal('ThirdScreen')} />
+        <Button title="Go Back" onPress={() => this.navigation.pop()} />
       </Screen>
     )
   }
 }
+
+const s = StyleSheet.create({
+  title: { fontSize: 24 },
+  code: { fontSize: 14, fontFamily: 'courier', marginVertical: 20 },
+})

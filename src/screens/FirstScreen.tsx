@@ -1,24 +1,22 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Text, Button } from 'react-native'
+import { NavigatorScreen, NavigatorOptions } from '../navigation'
 import { Screen } from '../components'
-import Navigator, { NavigatorOptions } from '../Navigator'
 
-interface Props {
-  componentId: string
-}
+interface Props {}
+interface State {}
 
-export default class FirstScreen extends Component<Props> {
-  static options(): NavigatorOptions {
-    return {
-      topBar: {
-        title: { text: 'First' },
-      },
-    }
+export default class FirstScreen extends NavigatorScreen<Props, State> {
+  static options(_: Props): NavigatorOptions {
+    return { topBar: { title: { text: 'First' } } }
   }
 
-  navigate = () => {
-    Navigator.push(this.props.componentId, 'SecondScreen', {
-      title: 'Second Screen Changed',
+  goToSecond = () => {
+    // simple push navigation with props
+    this.navigation.push('SecondScreen', {
+      title: 'Second Screen Title',
+      subtitle: 'Navbar subtitle',
+      message: 'Lorem ipsum dolor sit amet',
     })
   }
 
@@ -26,7 +24,7 @@ export default class FirstScreen extends Component<Props> {
     return (
       <Screen>
         <Text style={{ fontSize: 24 }}>First Screen</Text>
-        <Button title="Go to Second Screen" onPress={this.navigate} />
+        <Button title="Go to Second Screen" onPress={this.goToSecond} />
       </Screen>
     )
   }

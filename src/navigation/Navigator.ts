@@ -1,24 +1,17 @@
-import {
-  Navigation as NativeNavigation,
-  Options,
-} from 'react-native-navigation'
+import { Navigation as NativeNavigation } from 'react-native-navigation'
+import { ScreenName } from '../screens'
 
-export interface NavigatorOptions extends Options {}
-export type ScreenProps = Record<string, any>
+type ScreensMap = Record<ScreenName, any>
 
 class Navigator {
-  registerScreens(screens: any) {
-    screens.forEach((screen: any) => {
-      NativeNavigation.registerComponent(screen.id, () => screen.component)
-    })
+  registerScreens(screens: ScreensMap) {
+    for (let [screenId, screenObj] of Object.entries(screens)) {
+      NativeNavigation.registerComponent(screenId, () => screenObj.component)
+    }
   }
 
-  push(
-    componentId: string,
-    screenName: string,
-    props: Record<string, any> = {},
-  ) {
-    NativeNavigation.push(componentId, {
+  push(componentId: string, screenName: string, props: Record<string, any> = {}) {
+    return NativeNavigation.push(componentId, {
       component: {
         name: screenName,
         passProps: props,
@@ -27,11 +20,15 @@ class Navigator {
   }
 
   pop(componentId: string) {
-    NativeNavigation.pop(componentId)
+    return NativeNavigation.pop(componentId)
+  }
+
+  popToRoot(componentId: string) {
+    return NativeNavigation.popToRoot(componentId)
   }
 
   openModal(screenName: string, props: Record<string, any> = {}) {
-    NativeNavigation.showModal({
+    return NativeNavigation.showModal({
       stack: {
         children: [
           {
@@ -46,15 +43,11 @@ class Navigator {
   }
 
   closeModal(componentId: string) {
-    NativeNavigation.dismissModal(componentId)
+    return NativeNavigation.dismissModal(componentId)
   }
 
-  setStackRoot(
-    componentId: string,
-    screenName: string,
-    props: Record<string, any> = {},
-  ) {
-    NativeNavigation.setStackRoot(componentId, {
+  setStackRoot(componentId: string, screenName: string, props: Record<string, any> = {}) {
+    return NativeNavigation.setStackRoot(componentId, {
       component: {
         name: screenName,
         passProps: props,

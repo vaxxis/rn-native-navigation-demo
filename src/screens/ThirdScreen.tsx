@@ -1,28 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Text, Button } from 'react-native'
 import { Screen } from '../components'
-import Navigator, { NavigatorOptions, ScreenProps } from '../Navigator'
+import { NavigatorScreen, NavigatorOptions } from '../navigation'
 
-interface Props {
-  componentId: string
-}
+interface Props {}
 
-export default class ThirdScreen extends Component<Props> {
-  static options(_: ScreenProps): NavigatorOptions {
-    return {
-      topBar: {
-        title: { text: 'Third Screen' },
-      },
-    }
+export default class ThirdScreen extends NavigatorScreen<Props> {
+  static options(_: Props): NavigatorOptions {
+    return { topBar: { title: { text: 'Third Screen' } } }
   }
-
-  navigate = () => Navigator.push(this.props.componentId, 'ThirdScreen')
 
   render() {
     return (
       <Screen>
         <Text style={{ fontSize: 24 }}>Third Screen</Text>
-        <Button title="Open Stack Screen" onPress={this.navigate} />
+        <Button title="Open Stack Screen" onPress={() => this.navigation.push('ThirdScreen')} />
+        <Button title="Close Modal" onPress={() => this.navigation.closeModal()} />
       </Screen>
     )
   }

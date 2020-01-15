@@ -1,7 +1,7 @@
 import AppScreens from './screens'
-import Navigator from './Navigator'
+import Navigator from './navigation/Navigator'
 
-// Dynamically register application screens (found in ./screens/index.js)
+// Dynamically register application screens (found in ./screens/index.ts)
 Navigator.registerScreens(AppScreens)
 
 // Start Navigator Instance

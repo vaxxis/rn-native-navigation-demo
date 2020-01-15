@@ -2,8 +2,11 @@ import FirstScreen from './FirstScreen'
 import SecondScreen from './SecondScreen'
 import ThirdScreen from './ThirdScreen'
 
-export default [
-  { id: 'FirstScreen', component: FirstScreen },
-  { id: 'SecondScreen', component: SecondScreen },
-  { id: 'ThirdScreen', component: ThirdScreen },
-]
+const screens = {
+  FirstScreen: { component: FirstScreen },
+  SecondScreen: { component: SecondScreen },
+  ThirdScreen: { component: ThirdScreen },
+}
+
+export type ScreenName = keyof typeof screens
+export default screens
