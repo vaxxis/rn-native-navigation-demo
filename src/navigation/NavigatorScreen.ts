@@ -56,5 +56,8 @@ export default class NavigatorScreen<P extends Props, S = {}, SS = any> extends 
     closeModal: () => {
       Navigator.closeModal(this.props.componentId!)
     },
+    popToRoot: () => {
+      Navigator.popToRoot(this.props.componentId!)
+    },
   }
 }

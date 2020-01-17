@@ -26,7 +26,7 @@ export default class FirstScreen extends NavigatorScreen<Props, State> {
 
   render() {
     return (
-      <Screen>
+      <Screen scroll center>
         <Text style={{ fontSize: 24 }}>First Screen</Text>
         <Button title="Go to Second Screen" onPress={this.goToSecond} />
       </Screen>

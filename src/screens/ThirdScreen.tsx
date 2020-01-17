@@ -10,7 +10,7 @@ export default class ThirdScreen extends NavigatorScreen<Props> {
     return {
       topBar: {
         title: { text: 'Third Screen' },
-        leftButtons: [{ id: 'close', text: 'Close' }],
+        rightButtons: [{ id: 'close', text: 'Close' }],
       },
     }
   }
@@ -24,9 +24,9 @@ export default class ThirdScreen extends NavigatorScreen<Props> {
 
   render() {
     return (
-      <Screen>
+      <Screen center>
         <Text style={{ fontSize: 24 }}>Third Screen</Text>
-        <Button title="Open Stack Screen" onPress={() => this.navigation.push('ThirdScreen')} />
+        <Button title="Open Stack Screen" onPress={() => this.navigation.push('SecondScreen')} />
         <Button title="Close Modal" onPress={() => this.navigation.closeModal()} />
       </Screen>
     )
