@@ -7,7 +7,16 @@ interface Props {}
 
 export default class ThirdScreen extends NavigatorScreen<Props> {
   static navigatorOptions(_: Props): NavigatorOptions {
-    return { topBar: { title: { text: 'Third Screen' } } }
+    return {
+      topBar: {
+        title: { text: 'Third Screen' },
+        leftButtons: [{ id: 'close', text: 'Close' }],
+      },
+    }
+  }
+
+  navigationButtonPressed({ buttonId }: any) {
+    buttonId === 'close' && this.navigation.closeModal()
   }
 
   screenDidAppear() {}
