@@ -7,9 +7,13 @@ interface Props {}
 interface State {}
 
 export default class FirstScreen extends NavigatorScreen<Props, State> {
-  static options(_: Props): NavigatorOptions {
+  static navigatorOptions(_: Props): NavigatorOptions {
     return { topBar: { title: { text: 'First' } } }
   }
+
+  componentDidMount() {}
+  screenDidAppear() {}
+  screenDidDisappear() {}
 
   goToSecond = () => {
     // simple push navigation with props

@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default class SecondScreen extends NavigatorScreen<Props> {
-  static options(props: Props): NavigatorOptions {
+  static navigatorOptions(props: Props): NavigatorOptions {
     return {
       topBar: {
         title: { text: props.title, color: '#000' },

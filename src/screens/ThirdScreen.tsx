@@ -6,9 +6,12 @@ import { NavigatorScreen, NavigatorOptions } from '../navigation'
 interface Props {}
 
 export default class ThirdScreen extends NavigatorScreen<Props> {
-  static options(_: Props): NavigatorOptions {
+  static navigatorOptions(_: Props): NavigatorOptions {
     return { topBar: { title: { text: 'Third Screen' } } }
   }
+
+  screenDidAppear() {}
+  screenDidDisappear() {}
 
   render() {
     return (
